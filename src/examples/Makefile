@@ -1,5 +1,4 @@
-
-EXECUTABLES = exwikipedia rltest rlversion histexamp rl
+EXECUTABLES = exwikipedia rltest rlversion histexamp rl ootest
 FPC_OPTS = -Fu..
 
 
