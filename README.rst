@@ -52,7 +52,7 @@ Usage
 
 Simply add the units ``HistoryOOP`` and ``ReadlineOOP`` to the uses-clause
 of your program. Then follow `src/examples/ootest.pas
-<src/examples/ootest.pas>`_.
+<blob/master/src/examples/ootest.pas>`_.
 
 
 Platform
