@@ -69,6 +69,6 @@ Other Projects
   http://k7103.sourceforge.net/ includes a command line tool to test the
   hardware and to program the CPLD. This is a bigger usage example which
   also includes a the `TCL scripting language with a Pascal wrapper
-  <https://github.com/hansiglaser/pas-tcl>. See k7103usbtest.pas_.
+  <https://github.com/hansiglaser/pas-tcl>`_. See k7103usbtest.pas_.
 
   .. _k7103usbtest.pas: http://k7103.svn.sourceforge.net/viewvc/k7103/branch/usb/host-test/k7103usbtest.pas?view=markup
