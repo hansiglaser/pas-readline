@@ -32,7 +32,7 @@ Directory Structure
 -------------------
 
   ``src/``
-    Header translations and oop wrapper.
+    Header translations and OOP wrapper.
 
   ``src/examples/``
     Examples for the direct usage of the header translations as well as
@@ -68,7 +68,7 @@ Other Projects
   The USB Interface of the Velleman k7103 PC Storage Oscilloscope
   http://k7103.sourceforge.net/ includes a command line tool to test the
   hardware and to program the CPLD. This is a bigger usage example which
-  also includes a the TCL scripting language. See k7103usbtest.pas_.
+  also includes a the `TCL scripting language with a Pascal wrapper
+  <https://github.com/hansiglaser/pas-tcl>. See k7103usbtest.pas_.
 
   .. _k7103usbtest.pas: http://k7103.svn.sourceforge.net/viewvc/k7103/branch/usb/host-test/k7103usbtest.pas?view=markup
-
