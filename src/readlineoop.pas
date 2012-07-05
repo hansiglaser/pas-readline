@@ -33,6 +33,7 @@ Uses
 Type
   TDynArrString       = Array of String;
   TGetCompletionsFunc = Function(Text:PChar;Start,TheEnd:Integer) : TDynArrString of object;
+  TIsMultiLineCompleteFunc = Function(Line:String) : Boolean of object;
 
   { TReadline }
 
@@ -40,22 +41,27 @@ Type
   private
     FName          : String;     // for conditions in the ~/.inputrc file
     FPrompt        : String;
+    FPromptContinued : String;
     FQuitCmd       : String;
     FHistory       : THistory;
     FSigIntHandler : Boolean;  // if true a ^C signal handler is set before readline() is called
     FSigIntConvert : Boolean;  // raise EReadlineSigInt exception in signal handler to catch by higher-level
     FGetCompletions : TGetCompletionsFunc;
+    FIsMultiLineComplete : TIsMultiLineCompleteFunc;
     Function  GetBasicWordBreakCharacters:String;
     Procedure SetBasicWordBreakCharacters(Const AValue: String);
     Function  GetSpecialPrefixes:String;
     Procedure SetSpecialPrefixes(Const AValue: String);
     Function  GetLineBuffer:PChar;
+    Function  InternalRead(APrompt : PChar) : String;
     // TODO: rl_instream, rl_outstream
   public
     Constructor Create(AName:String);
     Destructor  Destroy; override;
-    { the main function }
+    { the main functions }
     Function  Read : String;
+    Function  ReadOneLine  (Out Line : String) : Boolean;
+    Function  ReadMultiLine(Out Line : String) : Boolean;
     { helper functions }
     Procedure Show(St:String);
     Procedure CRLF; inline;
@@ -64,10 +70,12 @@ Type
     { properties }
     property QuitCmd       : String   read FQuitCmd       write FQuitCmd;
     property Prompt        : String   read FPrompt        write FPrompt;
+    property PromptContinued : String   read FPromptContinued write FPromptContinued;
     property History       : THistory read FHistory       write FHistory;
     property SigIntHandler : Boolean  read FSigIntHandler write FSigIntHandler;
     property SigIntConvert : Boolean  read FSigIntConvert write FSigIntConvert;
     property GetCompletions : TGetCompletionsFunc read FGetCompletions write FGetCompletions;
+    property IsMultiLineComplete : TIsMultiLineCompleteFunc read FIsMultiLineComplete write FIsMultiLineComplete;
     { Readline variables }
     property BasicWordBreakCharacters : String read GetBasicWordBreakCharacters write SetBasicWordBreakCharacters;
     property SpecialPrefixes          : String read GetSpecialPrefixes          write SetSpecialPrefixes;
@@ -159,6 +167,7 @@ Begin
   // set defaults
   FName    := AName;
   FPrompt  := '> ';
+  FPromptContinued := '+ ';
   FQuitCmd := 'quit';
   FSigIntHandler := true;
 
@@ -208,7 +217,7 @@ Begin
     End;
 End;
 
-Function TReadline.Read:String;
+Function TReadline.InternalRead(APrompt:PChar):String;
 Var InputLine     : PChar;
     NewAct,OldAct : SigActionRec;
     NewSig,OldSig : TSigSet;
@@ -231,7 +240,7 @@ Begin
     End;
 
   // read a line
-  InputLine := Readline.readline(PChar(FPrompt));
+  InputLine := Readline.readline(APrompt);
 
   // remove signal handler
   if FSigIntHandler then
@@ -248,14 +257,89 @@ Begin
       InputLine := PChar(FQuitCmd);
     End;
   Result := Trim(InputLine);
+End;
 
-  // if the string was non-empty process it
-  if Result > '' then
-    Begin
-      // Add line to history (only if its not a duplicate)
-      if assigned(FHistory) then
-        FHistory.Add(Result);
+Function TReadline.Read:String;
+Begin
+  Result := InternalRead(PChar(FPrompt));
+  // if the string was non-empty, append to history
+  if (Result > '') and assigned(FHistory) then
+    FHistory.Add(Result);
+End;
+
+(**
+ * Read one line
+ *
+ * Returns true on success, false if ^C was pressed
+ *)
+Function TReadline.ReadOneLine(Out Line : String):Boolean;
+Begin
+  Result := false;
+  // get a line
+  try
+    Line := InternalRead(PChar(FPrompt));
+  except
+    On E : EReadlineSigInt do
+      Begin
+        { ^C pressed -> exit }
+        Exit;
+      End;
+  End;
+
+  // if the string was non-empty, append to history
+  if (Line > '') and assigned(FHistory) then
+    FHistory.Add(Line);
+
+  // success
+  Result := true;
+End;
+
+(**
+ * Read one or more line
+ *
+ * The virtual method "IsComplete" is used to determine whether the line is
+ * complete.
+ *
+ * Returns true on success, false if ^C was pressed
+ *)
+Function TReadline.ReadMultiLine(Out Line : String) : Boolean;
+Var MPrompt  : String;
+    OneLine  : String;
+    Complete : Boolean;
+Begin
+  Result := false;
+  // setup correct prompt
+  MPrompt  := FPrompt;
+  Line     := '';
+  Complete := false;
+  repeat
+    // get a line
+    try
+      OneLine := InternalRead(PChar(MPrompt));
+    except
+      On E : EReadlineSigInt do
+        Begin
+          { ^C pressed -> exit }
+          Exit;
+        End;
     End;
+    // append to full line
+    if Line = '' then
+      Line := OneLine
+    else
+      Line := Line + ' ' + OneLine;
+
+    Complete := IsMultiLineComplete(Line);
+    if not Complete then           // incomplete command: special prompt
+      MPrompt := FPromptContinued;
+  Until Complete;
+
+  // if the string was non-empty, append to history
+  if (Line > '') and assigned(FHistory) then
+    FHistory.Add(Line);
+
+  // success
+  Result := true;
 End;
 
 Procedure TReadline.Show(St:String);
