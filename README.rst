@@ -54,6 +54,8 @@ Simply add the units ``HistoryOOP`` and ``ReadlineOOP`` to the uses-clause
 of your program. Then follow `src/examples/ootest.pas
 <pas-readline/blob/master/src/examples/ootest.pas>`_.
 
+Alternatively, use the common wrapper for Readline and History ``TCmdLine``
+in `src/cmdline.pas <pas-readline/blob/master/src/cmdline.pas>`_.
 
 Platform
 --------
