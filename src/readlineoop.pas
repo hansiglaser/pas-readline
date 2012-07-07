@@ -329,7 +329,8 @@ Begin
     else
       Line := Line + ' ' + OneLine;
 
-    Complete := IsMultiLineComplete(Line);
+    // unassigned IsMultiLineComplete also leads to leave the loop
+    Complete := ((not assigned(IsMultiLineComplete)) or IsMultiLineComplete(Line));
     if not Complete then           // incomplete command: special prompt
       MPrompt := FPromptContinued;
   Until Complete;
