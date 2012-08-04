@@ -331,7 +331,7 @@ Begin
 
     // unassigned IsMultiLineComplete also leads to leave the loop
     Complete := ((not assigned(IsMultiLineComplete)) or IsMultiLineComplete(Line))
-                and (not (Line[Length(Line)] = '\'));
+                and (not ((Line > '') and (Line[Length(Line)] = '\')));
     if not Complete then           // incomplete command: special prompt
       MPrompt := FPromptContinued;
   Until Complete;
