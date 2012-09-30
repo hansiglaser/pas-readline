@@ -40,45 +40,45 @@ Type
 
 Type
   (* Bindable functions *)
-  rl_command_func_t = Function(Count:CInt;Key:CInt) : CInt; CDecl;
+  rl_command_func_t = Function(Count:CInt;Key:CInt) : CInt; extdecl;
 
   (* Typedefs for the completion system *)
-  rl_compentry_func_t   = Function(TheText : PChar; Matches : CInt) : PChar;  CDecl;
-  rl_completion_func_t  = Function(TheText : PChar; Start, TheEnd : CInt) : PPChar;  CDecl;
+  rl_compentry_func_t   = Function(TheText : PChar; Matches : CInt) : PChar;  extdecl;
+  rl_completion_func_t  = Function(TheText : PChar; Start, TheEnd : CInt) : PPChar;  extdecl;
 
-  rl_quote_func_t    = Function(TheText : PChar; Match : CInt; QuoteChar : PChar) : PChar;   CDecl;
-  rl_dequote_func_t  = Function(TheText : PChar; Length : CInt) : PChar;   CDecl;
+  rl_quote_func_t    = Function(TheText : PChar; Match : CInt; QuoteChar : PChar) : PChar;   extdecl;
+  rl_dequote_func_t  = Function(TheText : PChar; Length : CInt) : PChar;   extdecl;
 
-  rl_compignore_func_t  = Function(Completions : PPChar) : CInt;   CDecl;
+  rl_compignore_func_t  = Function(Completions : PPChar) : CInt;   extdecl;
 
-  rl_compdisp_func_t  = Procedure(Matches:PPChar; NumMatches:CInt; MaxLength:CInt);   CDecl;
+  rl_compdisp_func_t  = Procedure(Matches:PPChar; NumMatches:CInt; MaxLength:CInt);   extdecl;
 
   (* Type for input and pre-read hook functions like rl_event_hook *)
-  rl_hook_func_t  = Function : CInt;  CDecl;
+  rl_hook_func_t  = Function : CInt;  extdecl;
 
   (* Input function type *)
-  rl_getc_func_t  = Function(F:PCFILE) : CInt;  CDecl;
+  rl_getc_func_t  = Function(F:PCFILE) : CInt;  extdecl;
 
   (* Generic function that takes a character buffer (which could be the readline
      line buffer) and an index into it (which could be rl_point) and returns
      an int. *)
-  rl_linebuf_func_t  = Function(CharBuf:PChar; Index:CInt) : CInt;   CDecl;
+  rl_linebuf_func_t  = Function(CharBuf:PChar; Index:CInt) : CInt;   extdecl;
 
   (* `Generic' function pointer typedefs *)
-  rl_intfunc_t    = Function(P1:CInt)   : CInt;  CDecl;
+  rl_intfunc_t    = Function(P1:CInt)   : CInt;  extdecl;
   rl_ivoidfunc_t  = rl_hook_func_t;
-  rl_icpfunc_t    = Function(P1:PChar)  : CInt;  CDecl;
-  rl_icppfunc_t   = Function(P1:PPChar) : CInt;   CDecl;
+  rl_icpfunc_t    = Function(P1:PChar)  : CInt;  extdecl;
+  rl_icppfunc_t   = Function(P1:PPChar) : CInt;   extdecl;
 
-  rl_voidfunc_t   = Procedure;             CDecl;
-  rl_vintfunc_t   = Procedure(P1:CInt);     CDecl;
-  rl_vcpfunc_t    = Procedure(P1:PChar);     CDecl;
-  rl_vcppfunc_t   = Procedure(P1:PPChar);    CDecl;
+  rl_voidfunc_t   = Procedure;             extdecl;
+  rl_vintfunc_t   = Procedure(P1:CInt);     extdecl;
+  rl_vcpfunc_t    = Procedure(P1:PChar);     extdecl;
+  rl_vcppfunc_t   = Procedure(P1:PPChar);    extdecl;
 
-  rl_cpvfunc_t   = Function            : PChar;  CDecl;
-  rl_cpifunc_t   = Function(P1:CInt)   : PChar;  CDecl;
-  rl_cpcpfunc_t  = Function(P1:PChar)  : PChar;  CDecl;
-  rl_cpcppfunc_t = Function(P1:PPChar) : PChar;  CDecl;
+  rl_cpvfunc_t   = Function            : PChar;  extdecl;
+  rl_cpifunc_t   = Function(P1:CInt)   : PChar;  extdecl;
+  rl_cpcpfunc_t  = Function(P1:PChar)  : PChar;  extdecl;
+  rl_cpcppfunc_t = Function(P1:PPChar) : PChar;  extdecl;
 
 //#endif (* _RL_FUNCTION_TYPEDEF *)
 

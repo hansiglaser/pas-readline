@@ -1,6 +1,8 @@
 (***************************************************************************
  *   Copyright (C) 2012 by Johann Glaser <Johann.Glaser@gmx.at>            *
  *                                                                         *
+ *   OOP wrapper for the GNU History Library                               *
+ *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *

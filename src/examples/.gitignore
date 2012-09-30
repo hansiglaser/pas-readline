@@ -1,0 +1,10 @@
+*.ico
+*.res
+*.lpi
+lib/
+exwikipedia
+histexamp
+rl
+rltest
+rlversion
+ootest

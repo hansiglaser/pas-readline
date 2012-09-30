@@ -22,10 +22,17 @@
 Program HistExamp;
 Uses SysUtils,History,CMem,UnixType;
 
+{$macro on}
+{$ifdef windows}
+  {$define extdecl:=stdcall}
+{$else}
+  {$define extdecl:=cdecl}
+{$endif}
+
 {$LINKLIB c}
 Type Ptm = Pointer;
-function strftime(__s:Pchar; __maxsize:size_t; __format:Pchar; __tp:Ptm):size_t;cdecl;external name 'strftime';
-function localtime(var __timer : time_t):Ptm;cdecl;external name 'localtime';
+function strftime(__s:Pchar; __maxsize:size_t; __format:Pchar; __tp:Ptm):size_t;extdecl;external name 'strftime';
+function localtime(var __timer : time_t):Ptm;extdecl;external name 'localtime';
 
 Function DoExpansion(Var Line:AnsiString):Boolean;
 Var Expansion : PChar;

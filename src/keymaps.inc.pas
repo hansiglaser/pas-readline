@@ -71,27 +71,27 @@ Var
 
 (* Return a new, empty keymap.
    Free it with free() when you are done. *)
-function rl_make_bare_keymap:Keymap;cdecl;external;
+function rl_make_bare_keymap:Keymap;extdecl;external;
 
 (* Return a new keymap which is a copy of MAP. *)
-function rl_copy_keymap(_para1:Keymap):Keymap;cdecl;external;
+function rl_copy_keymap(_para1:Keymap):Keymap;extdecl;external;
 
 (* Return a new keymap with the printing characters bound to rl_insert,
    the lowercase Meta characters bound to run their equivalents, and
    the Meta digits bound to produce numeric arguments. *)
-function rl_make_keymap:Keymap;cdecl;external;
+function rl_make_keymap:Keymap;extdecl;external;
 
 (* Free the storage associated with a keymap. *)
-procedure rl_discard_keymap(_para1:Keymap);cdecl;external;
+procedure rl_discard_keymap(_para1:Keymap);extdecl;external;
 
 (* These functions actually appear in bind.c *)
 
 (* Return the keymap corresponding to a given name.  Names look like
    `emacs' or `emacs-meta' or `vi-insert'.  *)
-function rl_get_keymap_by_name(_para1:PChar):Keymap;cdecl;external;
+function rl_get_keymap_by_name(_para1:PChar):Keymap;extdecl;external;
 
 (* Return the current keymap. *)
-function rl_get_keymap:Keymap;cdecl;external;
+function rl_get_keymap:Keymap;extdecl;external;
 
 (* Set the current keymap to MAP. *)
-procedure rl_set_keymap(_para1:Keymap);cdecl;external;
+procedure rl_set_keymap(_para1:Keymap);extdecl;external;

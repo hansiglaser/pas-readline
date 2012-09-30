@@ -27,14 +27,21 @@
 Program RL;
 Uses SysUtils,GetOpts,BaseUnix,Readline,History,CMem;
 
+{$macro on}
+{$ifdef windows}
+  {$define extdecl:=stdcall}
+{$else}
+  {$define extdecl:=cdecl}
+{$endif}
+
 {$LINKLIB c}
 Type PFILE = Pointer;
-function fdopen(__fd:longint; __modes:Pchar):PFILE;cdecl;external name 'fdopen';
+function fdopen(__fd:longint; __modes:Pchar):PFILE;extdecl;external name 'fdopen';
 
 Var ProgName : String;
     DefText  : AnsiString;
 
-Function SetDefText : Integer; cdecl;
+Function SetDefText : Integer; extdecl;
 Begin
   if DefText > '' then
     Begin

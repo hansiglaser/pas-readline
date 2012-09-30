@@ -33,6 +33,13 @@ Unit Readline;
 Interface
 Uses CTypes;
 
+{$macro on}
+{$ifdef windows}
+  {$define extdecl:=stdcall}
+{$else}
+  {$define extdecl:=cdecl}
+{$endif}
+
 {$LINKLIB readline}
 
 //#  include "rlstdc.h"
@@ -90,199 +97,199 @@ Var
 (* **************************************************************** *)
 
 (* Bindable commands for numeric arguments. *)
-Function rl_digit_argument(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_universal_argument(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_digit_argument(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_universal_argument(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for moving the cursor. *)
-Function rl_forward_byte(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_forward_char(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_forward(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_byte(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_char(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_beg_of_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_end_of_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_forward_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_refresh_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_clear_screen(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_skip_csi_sequence(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_arrow_keys(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_forward_byte(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_forward_char(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_forward(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_byte(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_char(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_beg_of_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_end_of_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_forward_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_refresh_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_clear_screen(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_skip_csi_sequence(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_arrow_keys(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for inserting and deleting text. *)
-Function rl_insert(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_quoted_insert(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_tab_insert(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_newline(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_do_lowercase_version(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_rubout(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_delete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_rubout_or_delete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_delete_horizontal_space(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_delete_or_show_completions(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_insert_comment(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_insert(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_quoted_insert(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_tab_insert(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_newline(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_do_lowercase_version(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_rubout(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_delete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_rubout_or_delete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_delete_horizontal_space(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_delete_or_show_completions(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_insert_comment(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for changing case. *)
-Function rl_upcase_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_downcase_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_capitalize_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_upcase_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_downcase_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_capitalize_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for transposing characters and words. *)
-Function rl_transpose_words(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_transpose_chars(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_transpose_words(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_transpose_chars(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for searching within a line. *)
-Function rl_char_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_char_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_char_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_char_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for readline's interface to the command history. *)
-Function rl_beginning_of_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_end_of_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_get_next_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_get_previous_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_beginning_of_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_end_of_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_get_next_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_get_previous_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for managing the mark and region. *)
-Function rl_set_mark(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_exchange_point_and_mark(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_set_mark(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_exchange_point_and_mark(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands to set the editing mode (emacs or vi). *)
-Function rl_vi_editing_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_emacs_editing_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_vi_editing_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_emacs_editing_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands to change the insert mode (insert or overwrite) *)
-Function rl_overwrite_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_overwrite_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for managing key bindings. *)
-Function rl_re_read_init_file(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_dump_functions(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_dump_macros(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_dump_variables(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_re_read_init_file(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_dump_functions(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_dump_macros(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_dump_variables(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for word completion. *)
-Function rl_complete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_possible_completions(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_insert_completions(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_old_menu_complete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_menu_complete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_menu_complete(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_complete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_possible_completions(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_insert_completions(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_old_menu_complete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_menu_complete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_menu_complete(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for killing and yanking text, and managing the kill ring. *)
-Function rl_kill_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_kill_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_kill_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_backward_kill_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_kill_full_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_unix_word_rubout(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_unix_filename_rubout(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_unix_line_discard(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_copy_region_to_kill(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_kill_region(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_copy_forward_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_copy_backward_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_yank(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_yank_pop(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_yank_nth_arg(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_yank_last_arg(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_kill_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_kill_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_kill_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_backward_kill_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_kill_full_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_unix_word_rubout(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_unix_filename_rubout(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_unix_line_discard(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_copy_region_to_kill(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_kill_region(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_copy_forward_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_copy_backward_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_yank(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_yank_pop(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_yank_nth_arg(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_yank_last_arg(Count:CInt;Key:CInt) : CInt; extdecl; external;
 (* Not available unless __CYGWIN__ is defined. *)
 //#ifdef __CYGWIN__
-//Function rl_paste_from_clipboard(Count:CInt;Key:CInt) : CInt; cdecl; external;
+//Function rl_paste_from_clipboard(Count:CInt;Key:CInt) : CInt; extdecl; external;
 //#endif
 
 (* Bindable commands for incremental searching. *)
-Function rl_reverse_search_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_forward_search_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_reverse_search_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_forward_search_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable keyboard macro commands. *)
-Function rl_start_kbd_macro(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_end_kbd_macro(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_call_last_kbd_macro(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_start_kbd_macro(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_end_kbd_macro(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_call_last_kbd_macro(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable undo commands. *)
-Function rl_revert_line(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_undo_command(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_revert_line(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_undo_command(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable tilde expansion commands. *)
-Function rl_tilde_expand(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_tilde_expand(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable terminal control commands. *)
-Function rl_restart_output(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_stop_output(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_restart_output(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_stop_output(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Miscellaneous bindable commands. *)
-Function rl_abort(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_tty_status(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_abort(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_tty_status(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable commands for incremental and non-incremental history searching. *)
-Function rl_history_search_forward(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_history_search_backward(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_noninc_forward_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_noninc_reverse_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_noninc_forward_search_again(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_noninc_reverse_search_again(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_history_search_forward(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_history_search_backward(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_noninc_forward_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_noninc_reverse_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_noninc_forward_search_again(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_noninc_reverse_search_again(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Bindable command used when inserting a matching close character. *)
-Function rl_insert_close(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_insert_close(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* Not available unless READLINE_CALLBACKS is defined. *)
-Procedure rl_callback_handler_install(Prompt:PChar;Callback:rl_vcpfunc_t); cdecl; external;
-Procedure rl_callback_read_char; cdecl; external;
-Procedure rl_callback_handler_remove; cdecl; external;
+Procedure rl_callback_handler_install(Prompt:PChar;Callback:rl_vcpfunc_t); extdecl; external;
+Procedure rl_callback_read_char; extdecl; external;
+Procedure rl_callback_handler_remove; extdecl; external;
 
 (* Things for vi mode. Not available unless readline is compiled -DVI_MODE. *)
 (* VI-mode bindable commands. *)
-Function rl_vi_redo(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_undo(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_yank_arg(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_fetch_history(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_search_again(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_complete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_tilde_expand(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_prev_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_next_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_end_word(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_insert_beg(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_append_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_append_eol(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_eof_maybe(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_insertion_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_insert_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_movement_mode(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_arg_digit(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_change_case(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_put(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_column(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_delete_to(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_change_to(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_yank_to(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_rubout(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_delete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_back_to_indent(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_first_print(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_char_search(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_match(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_change_char(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_subst(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_overstrike(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_overstrike_delete(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_replace(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_set_mark(Count:CInt;Key:CInt) : CInt; cdecl; external;
-Function rl_vi_goto_mark(Count:CInt;Key:CInt) : CInt; cdecl; external;
+Function rl_vi_redo(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_undo(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_yank_arg(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_fetch_history(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_search_again(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_complete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_tilde_expand(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_prev_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_next_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_end_word(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_insert_beg(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_append_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_append_eol(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_eof_maybe(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_insertion_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_insert_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_movement_mode(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_arg_digit(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_change_case(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_put(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_column(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_delete_to(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_change_to(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_yank_to(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_rubout(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_delete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_back_to_indent(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_first_print(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_char_search(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_match(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_change_char(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_subst(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_overstrike(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_overstrike_delete(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_replace(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_set_mark(Count:CInt;Key:CInt) : CInt; extdecl; external;
+Function rl_vi_goto_mark(Count:CInt;Key:CInt) : CInt; extdecl; external;
 
 (* VI-mode utility functions. *)
-Function rl_vi_check : CInt; cdecl; external;
-Function rl_vi_domove(x:CInt;Ignore:PCInt) : CInt; cdecl; external;
-Function rl_vi_bracktype(Character:CInt) : CInt; cdecl; external;
+Function rl_vi_check : CInt; extdecl; external;
+Function rl_vi_domove(x:CInt;Ignore:PCInt) : CInt; extdecl; external;
+Function rl_vi_bracktype(Character:CInt) : CInt; extdecl; external;
 
-Procedure rl_vi_start_inserting(Key,TheRepeat,Sign:CInt); cdecl; external;
+Procedure rl_vi_start_inserting(Key,TheRepeat,Sign:CInt); extdecl; external;
 
 (* VI-mode pseudo-bindable commands, used as utility functions. *)
-Function rl_vi_fUWord(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_fWord';
-Function rl_vi_bUWord(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_bWord';
-Function rl_vi_eUWord(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_eWord';
-Function rl_vi_fLword(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_fword';
-Function rl_vi_bLword(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_bword';
-Function rl_vi_eLword(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_eword';
+Function rl_vi_fUWord(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_fWord';
+Function rl_vi_bUWord(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_bWord';
+Function rl_vi_eUWord(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_eWord';
+Function rl_vi_fLword(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_fword';
+Function rl_vi_bLword(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_bword';
+Function rl_vi_eLword(Count:CInt;Key:CInt) : CInt; extdecl; external name 'rl_vi_eword';
 
 (* **************************************************************** *)
 (*								    *)
@@ -292,175 +299,175 @@ Function rl_vi_eLword(Count:CInt;Key:CInt) : CInt; cdecl; external name 'rl_vi_e
 
 (* Readline functions. *)
 (* Read a line of input.  Prompt with PROMPT.  A NULL PROMPT means none. *)
-Function readline        (Prompt:PChar) : PChar; cdecl; external;
+Function readline        (Prompt:PChar) : PChar; extdecl; external;
 
-Function rl_set_prompt   (Prompt:PChar):cint;cdecl;external;
-Function rl_expand_prompt(Prompt:PChar):cint;cdecl;external;
+Function rl_set_prompt   (Prompt:PChar):cint;extdecl;external;
+Function rl_expand_prompt(Prompt:PChar):cint;extdecl;external;
 
-Function rl_initialize:cint;cdecl;external;
+Function rl_initialize:cint;extdecl;external;
 
 (* Undocumented; unused by readline *)
-Function rl_discard_argument:cint;cdecl;external;
+Function rl_discard_argument:cint;extdecl;external;
 
 (* Utility functions to bind keys to readline commands. *)
-Function rl_add_defun(Name:PChar; TheFunction:rl_command_func_t; Key:cint):cint;cdecl;external;
-Function rl_bind_key(Key:cint; TheFunction:rl_command_func_t):cint;cdecl;external;
-Function rl_bind_key_in_map(Key:cint; TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
-Function rl_unbind_key(Key:cint):cint;cdecl;external;
-Function rl_unbind_key_in_map(Key:cint; Map:Keymap):cint;cdecl;external;
-Function rl_bind_key_if_unbound(Key:cint; TheFunction:rl_command_func_t):cint;cdecl;external;
-Function rl_bind_key_if_unbound_in_map(Key:cint; TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
-Function rl_unbind_function_in_map(TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
-Function rl_unbind_command_in_map(Command:PChar; Map:Keymap):cint;cdecl;external;
-Function rl_bind_keyseq(KeySeq:PChar; TheFunction:rl_command_func_t):cint;cdecl;external;
-Function rl_bind_keyseq_in_map(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
-Function rl_bind_keyseq_if_unbound(KeySeq:PChar; TheFunction:rl_command_func_t):cint;cdecl;external;
-Function rl_bind_keyseq_if_unbound_in_map(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
-Function rl_generic_bind(TheType:cint; KeySeq:PChar; Data:PChar; Map:Keymap):cint;cdecl;external;
-Function rl_variable_value(Variable:PChar):PChar;cdecl;external;
-Function rl_variable_bind(Variable:PChar; Value:PChar):cint;cdecl;external;
+Function rl_add_defun(Name:PChar; TheFunction:rl_command_func_t; Key:cint):cint;extdecl;external;
+Function rl_bind_key(Key:cint; TheFunction:rl_command_func_t):cint;extdecl;external;
+Function rl_bind_key_in_map(Key:cint; TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
+Function rl_unbind_key(Key:cint):cint;extdecl;external;
+Function rl_unbind_key_in_map(Key:cint; Map:Keymap):cint;extdecl;external;
+Function rl_bind_key_if_unbound(Key:cint; TheFunction:rl_command_func_t):cint;extdecl;external;
+Function rl_bind_key_if_unbound_in_map(Key:cint; TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
+Function rl_unbind_function_in_map(TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
+Function rl_unbind_command_in_map(Command:PChar; Map:Keymap):cint;extdecl;external;
+Function rl_bind_keyseq(KeySeq:PChar; TheFunction:rl_command_func_t):cint;extdecl;external;
+Function rl_bind_keyseq_in_map(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
+Function rl_bind_keyseq_if_unbound(KeySeq:PChar; TheFunction:rl_command_func_t):cint;extdecl;external;
+Function rl_bind_keyseq_if_unbound_in_map(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
+Function rl_generic_bind(TheType:cint; KeySeq:PChar; Data:PChar; Map:Keymap):cint;extdecl;external;
+Function rl_variable_value(Variable:PChar):PChar;extdecl;external;
+Function rl_variable_bind(Variable:PChar; Value:PChar):cint;extdecl;external;
 
 (* Backwards compatibility, use rl_bind_keyseq_in_map instead. *)
-Function rl_set_key(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;cdecl;external;
+Function rl_set_key(KeySeq:PChar; TheFunction:rl_command_func_t; Map:Keymap):cint;extdecl;external;
 
 (* Backwards compatibility, use rl_generic_bind instead. *)
-Function rl_macro_bind(KeySeq:PChar; Macro:PChar; Map:Keymap):cint;cdecl;external;
+Function rl_macro_bind(KeySeq:PChar; Macro:PChar; Map:Keymap):cint;extdecl;external;
 
 (* Undocumented in the texinfo manual; not really useful to programs. *)
-Function rl_translate_keyseq(Seq:PChar; TheArray:PChar; Len:pcint):cint;cdecl;external;
-Function rl_untranslate_keyseq(Seq:cint):PChar;cdecl;external;
+Function rl_translate_keyseq(Seq:PChar; TheArray:PChar; Len:pcint):cint;extdecl;external;
+Function rl_untranslate_keyseq(Seq:cint):PChar;extdecl;external;
 
-Function rl_named_function(Name:PChar):rl_command_func_t;cdecl;external;
-Function rl_function_of_keyseq(KeySeq:PChar; Map:Keymap; TheType:pcint):rl_command_func_t;cdecl;external;
+Function rl_named_function(Name:PChar):rl_command_func_t;extdecl;external;
+Function rl_function_of_keyseq(KeySeq:PChar; Map:Keymap; TheType:pcint):rl_command_func_t;extdecl;external;
 
-procedure rl_list_funmap_names;cdecl;external;
-Function rl_invoking_keyseqs_in_map(TheFunction:rl_command_func_t; Map:Keymap):PPChar;cdecl;external;
-Function rl_invoking_keyseqs(TheFunction:rl_command_func_t):PPChar;cdecl;external;
+procedure rl_list_funmap_names;extdecl;external;
+Function rl_invoking_keyseqs_in_map(TheFunction:rl_command_func_t; Map:Keymap):PPChar;extdecl;external;
+Function rl_invoking_keyseqs(TheFunction:rl_command_func_t):PPChar;extdecl;external;
 
-procedure rl_function_dumper(Readable:cint);cdecl;external;
-procedure rl_macro_dumper(Readable:cint);cdecl;external;
-procedure rl_variable_dumper(Readable:cint);cdecl;external;
+procedure rl_function_dumper(Readable:cint);extdecl;external;
+procedure rl_macro_dumper(Readable:cint);extdecl;external;
+procedure rl_variable_dumper(Readable:cint);extdecl;external;
 
-Function rl_read_init_file(Filename:PChar):cint;cdecl;external;
-Function rl_parse_and_bind(Line:PChar):cint;cdecl;external;
+Function rl_read_init_file(Filename:PChar):cint;extdecl;external;
+Function rl_parse_and_bind(Line:PChar):cint;extdecl;external;
 
 // duplicate definition in keymaps.inc.pas
 //(* Functions for manipulating keymaps. *)
-//Function rl_make_bare_keymap:Keymap;cdecl;external;
-//Function rl_copy_keymap(Map:Keymap):Keymap;cdecl;external;
-//Function rl_make_keymap:Keymap;cdecl;external;
-//procedure rl_discard_keymap(Map:Keymap);cdecl;external;
+//Function rl_make_bare_keymap:Keymap;extdecl;external;
+//Function rl_copy_keymap(Map:Keymap):Keymap;extdecl;external;
+//Function rl_make_keymap:Keymap;extdecl;external;
+//procedure rl_discard_keymap(Map:Keymap);extdecl;external;
 //
-//Function rl_get_keymap_by_name(Name:PChar):Keymap;cdecl;external;
-//Function rl_get_keymap_name(Map:Keymap):PChar;cdecl;external;
-//procedure rl_set_keymap(Map:Keymap);cdecl;external;
-//Function rl_get_keymap:Keymap;cdecl;external;
+//Function rl_get_keymap_by_name(Name:PChar):Keymap;extdecl;external;
+//Function rl_get_keymap_name(Map:Keymap):PChar;extdecl;external;
+//procedure rl_set_keymap(Map:Keymap);extdecl;external;
+//Function rl_get_keymap:Keymap;extdecl;external;
 (* Undocumented; used internally only. *)
-procedure rl_set_keymap_from_edit_mode;cdecl;external;
-Function rl_get_keymap_name_from_edit_mode:PChar;cdecl;external;
+procedure rl_set_keymap_from_edit_mode;extdecl;external;
+Function rl_get_keymap_name_from_edit_mode:PChar;extdecl;external;
 
 (* Functions for manipulating the funmap, which maps command names to functions. *)
-Function rl_add_funmap_entry(Name:PChar; TheFunction:rl_command_func_t):cint;cdecl;external;
-Function rl_funmap_names:PPChar;cdecl;external;
+Function rl_add_funmap_entry(Name:PChar; TheFunction:rl_command_func_t):cint;extdecl;external;
+Function rl_funmap_names:PPChar;extdecl;external;
 (* Undocumented, only used internally -- there is only one funmap, and this
    function may be called only once. *)
-procedure rl_initialize_funmap;cdecl;external;
+procedure rl_initialize_funmap;extdecl;external;
 
 (* Utility functions for managing keyboard macros. *)
-procedure rl_push_macro_input(Macro:PChar);cdecl;external;
+procedure rl_push_macro_input(Macro:PChar);extdecl;external;
 
 (* Functions for undoing, from undo.c *)
-procedure rl_add_undo(What:undo_code; Start:cint; TheEnd:cint; TheText:PChar);cdecl;external;
-procedure rl_free_undo_list;cdecl;external;
-Function rl_do_undo:cint;cdecl;external;
-Function rl_begin_undo_group:cint;cdecl;external;
-Function rl_end_undo_group:cint;cdecl;external;
-Function rl_modifying(Start:cint; TheEnd:cint):cint;cdecl;external;
+procedure rl_add_undo(What:undo_code; Start:cint; TheEnd:cint; TheText:PChar);extdecl;external;
+procedure rl_free_undo_list;extdecl;external;
+Function rl_do_undo:cint;extdecl;external;
+Function rl_begin_undo_group:cint;extdecl;external;
+Function rl_end_undo_group:cint;extdecl;external;
+Function rl_modifying(Start:cint; TheEnd:cint):cint;extdecl;external;
 
 (* Functions for redisplay. *)
-procedure rl_redisplay;cdecl;external;
-Function rl_on_new_line:cint;cdecl;external;
-Function rl_on_new_line_with_prompt:cint;cdecl;external;
-Function rl_forced_update_display:cint;cdecl;external;
-Function rl_clear_message:cint;cdecl;external;
-Function rl_reset_line_state:cint;cdecl;external;
-Function rl_crlf:cint;cdecl;external;
+procedure rl_redisplay;extdecl;external;
+Function rl_on_new_line:cint;extdecl;external;
+Function rl_on_new_line_with_prompt:cint;extdecl;external;
+Function rl_forced_update_display:cint;extdecl;external;
+Function rl_clear_message:cint;extdecl;external;
+Function rl_reset_line_state:cint;extdecl;external;
+Function rl_crlf:cint;extdecl;external;
 
 //#if defined (USE_VARARGS) && defined (PREFER_STDARG)
-Function rl_message(Format:PChar;Params:Array of Const) : CInt; cdecl; external;
+Function rl_message(Format:PChar;Params:Array of Const) : CInt; extdecl; external;
 //#else
 //extern int rl_message ();
 //#endif
 
-Function rl_show_char(C:cint):cint;cdecl;external;
+Function rl_show_char(C:cint):cint;extdecl;external;
 
 (* Undocumented in texinfo manual. *)
-Function rl_character_len(C:cint; Pos:cint):cint;cdecl;external;
+Function rl_character_len(C:cint; Pos:cint):cint;extdecl;external;
 
 (* Save and restore internal prompt redisplay information. *)
-procedure rl_save_prompt;cdecl;external;
-procedure rl_restore_prompt;cdecl;external;
+procedure rl_save_prompt;extdecl;external;
+procedure rl_restore_prompt;extdecl;external;
 
 (* Modifying text. *)
-procedure rl_replace_line(TheText:PChar; ClearUndo:cint);cdecl;external;
-Function rl_insert_text(TheText:PChar):cint;cdecl;external;
-Function rl_delete_text(Start:cint; TheEnd:cint):cint;cdecl;external;
-Function rl_kill_text(Start:cint; TheEnd:cint):cint;cdecl;external;
-Function rl_copy_text(Start:cint; TheEnd:cint):PChar;cdecl;external;
+procedure rl_replace_line(TheText:PChar; ClearUndo:cint);extdecl;external;
+Function rl_insert_text(TheText:PChar):cint;extdecl;external;
+Function rl_delete_text(Start:cint; TheEnd:cint):cint;extdecl;external;
+Function rl_kill_text(Start:cint; TheEnd:cint):cint;extdecl;external;
+Function rl_copy_text(Start:cint; TheEnd:cint):PChar;extdecl;external;
 
 (* Terminal and tty mode management. *)
-procedure rl_prep_terminal(MetaFlag:cint);cdecl;external;
-procedure rl_deprep_terminal;cdecl;external;
-procedure rl_tty_set_default_bindings(Map:Keymap);cdecl;external;
-procedure rl_tty_unset_default_bindings(Map:Keymap);cdecl;external;
+procedure rl_prep_terminal(MetaFlag:cint);extdecl;external;
+procedure rl_deprep_terminal;extdecl;external;
+procedure rl_tty_set_default_bindings(Map:Keymap);extdecl;external;
+procedure rl_tty_unset_default_bindings(Map:Keymap);extdecl;external;
 
-Function rl_reset_terminal(TerminalName:PChar):cint;cdecl;external;
-procedure rl_resize_terminal;cdecl;external;
-procedure rl_set_screen_size(Rows:cint; Cols:cint);cdecl;external;
-procedure rl_get_screen_size(Rows:pcint; Cols:pcint);cdecl;external;
-procedure rl_reset_screen_size;cdecl;external;
+Function rl_reset_terminal(TerminalName:PChar):cint;extdecl;external;
+procedure rl_resize_terminal;extdecl;external;
+procedure rl_set_screen_size(Rows:cint; Cols:cint);extdecl;external;
+procedure rl_get_screen_size(Rows:pcint; Cols:pcint);extdecl;external;
+procedure rl_reset_screen_size;extdecl;external;
 
-Function rl_get_termcap(Cap:PChar):PChar;cdecl;external;
+Function rl_get_termcap(Cap:PChar):PChar;extdecl;external;
 
 (* Functions for character input. *)
-Function rl_stuff_char(C:cint):cint;cdecl;external;
-Function rl_execute_next(C:cint):cint;cdecl;external;
-Function rl_clear_pending_input:cint;cdecl;external;
-Function rl_read_key:cint;cdecl;external;
-Function rl_getc(Stream:PCFILE):cint;cdecl;external;
-Function rl_set_keyboard_input_timeout(U:cint):cint;cdecl;external;
+Function rl_stuff_char(C:cint):cint;extdecl;external;
+Function rl_execute_next(C:cint):cint;extdecl;external;
+Function rl_clear_pending_input:cint;extdecl;external;
+Function rl_read_key:cint;extdecl;external;
+Function rl_getc(Stream:PCFILE):cint;extdecl;external;
+Function rl_set_keyboard_input_timeout(U:cint):cint;extdecl;external;
 
 (* `Public' utility functions . *)
-procedure rl_extend_line_buffer(Len:cint);cdecl;external;
-Function rl_ding:cint;cdecl;external;
-Function rl_alphabetic(C:cint):cint;cdecl;external;
-procedure rl_free(Mem:pointer);cdecl;external;
+procedure rl_extend_line_buffer(Len:cint);extdecl;external;
+Function rl_ding:cint;extdecl;external;
+Function rl_alphabetic(C:cint):cint;extdecl;external;
+procedure rl_free(Mem:pointer);extdecl;external;
 
 (* Readline signal handling, from signals.c *)
-Function rl_set_signals:cint;cdecl;external;
-Function rl_clear_signals:cint;cdecl;external;
-procedure rl_cleanup_after_signal;cdecl;external;
-procedure rl_reset_after_signal;cdecl;external;
-procedure rl_free_line_state;cdecl;external;
+Function rl_set_signals:cint;extdecl;external;
+Function rl_clear_signals:cint;extdecl;external;
+procedure rl_cleanup_after_signal;extdecl;external;
+procedure rl_reset_after_signal;extdecl;external;
+procedure rl_free_line_state;extdecl;external;
 
-procedure rl_echo_signal_char(Sig:cint);cdecl;external;
+procedure rl_echo_signal_char(Sig:cint);extdecl;external;
 
-Function rl_set_paren_blink_timeout(U:cint):cint;cdecl;external;
+Function rl_set_paren_blink_timeout(U:cint):cint;extdecl;external;
 
 (* Undocumented. *)
-Function rl_maybe_save_line:cint;cdecl;external;
-Function rl_maybe_unsave_line:cint;cdecl;external;
-Function rl_maybe_replace_line:cint;cdecl;external;
+Function rl_maybe_save_line:cint;extdecl;external;
+Function rl_maybe_unsave_line:cint;extdecl;external;
+Function rl_maybe_replace_line:cint;extdecl;external;
 
 (* Completion functions. *)
-Function rl_complete_internal(WhatToDo:cint):cint;cdecl;external;
-procedure rl_display_match_list(Matches:PPChar; Len:cint; Max:cint);cdecl;external;
+Function rl_complete_internal(WhatToDo:cint):cint;extdecl;external;
+procedure rl_display_match_list(Matches:PPChar; Len:cint; Max:cint);extdecl;external;
 
-Function rl_completion_matches(TheText:PChar; EntryFunc:rl_compentry_func_t):PPChar;cdecl;external;
-Function rl_username_completion_function(TheText:PChar; State:cint):PChar;cdecl;external;
-Function rl_filename_completion_function(TheText:PChar; State:cint):PChar;cdecl;external;
+Function rl_completion_matches(TheText:PChar; EntryFunc:rl_compentry_func_t):PPChar;extdecl;external;
+Function rl_username_completion_function(TheText:PChar; State:cint):PChar;extdecl;external;
+Function rl_filename_completion_function(TheText:PChar; State:cint):PChar;extdecl;external;
 
-Function rl_completion_mode(CFunc:rl_command_func_t):cint;cdecl;external;
+Function rl_completion_mode(CFunc:rl_command_func_t):cint;extdecl;external;
 
 //#if 0
 //(* Backwards compatibility (compat.c).  These will go away sometime. *)
@@ -901,8 +908,8 @@ Type
     reserved : array[0..63] of cchar;
   end;
 
-Function rl_save_state(sp:Preadline_state):cint;cdecl;external;
-Function rl_restore_state(sp:Preadline_state):cint;cdecl;external;
+Function rl_save_state(sp:Preadline_state):cint;extdecl;external;
+Function rl_restore_state(sp:Preadline_state):cint;extdecl;external;
 
 Implementation
 

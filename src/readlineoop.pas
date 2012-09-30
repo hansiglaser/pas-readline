@@ -1,6 +1,8 @@
 (***************************************************************************
  *   Copyright (C) 2012 by Johann Glaser <Johann.Glaser@gmx.at>            *
  *                                                                         *
+ *   OOP wrapper for the GNU Readline Library                              *
+ *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
@@ -24,6 +26,13 @@
 Unit ReadlineOOP;
 
 {$mode objfpc}{$H+}
+
+{$macro on}
+{$ifdef windows}
+  {$define extdecl:=stdcall}
+{$else}
+  {$define extdecl:=cdecl}
+{$endif}
 
 Interface
 
@@ -119,7 +128,7 @@ Const GlobalCompletions    : TDynArrString = Nil;
 // rl_completion_matches() wants the strings to be malloc()ed and will be freed
 // later, therefore we link to the libc strdup() (which is basically a wrapper
 // for malloc()).
-Function StrDup(para1:Pchar):Pchar;cdecl;external 'c' name 'strdup';
+Function StrDup(para1:Pchar):Pchar;extdecl;external 'c' name 'strdup';
 
 Function GetGlobalCompletions(TheText : PChar; Matches : CInt) : PChar;  CDecl;
 Begin
