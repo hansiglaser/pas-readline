@@ -79,6 +79,11 @@ Begin
 
     // execute
     ExitLoop := FExecute(Command);
+    // flush output (this is necessary of the output is redirected)
+    Flush(ErrOutput);
+    Flush(Output);
+    Flush(StdOut);
+    Flush(StdErr);
   Until ExitLoop;
 End;
 
