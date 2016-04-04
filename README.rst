@@ -73,4 +73,10 @@ Other Projects
   also includes a the `TCL scripting language with a Pascal wrapper
   <https://github.com/hansiglaser/pas-tcl>`_. See k7103usbtest.pas_.
 
+**chll**
+  The tools for the `Design Methodology for Custom Reconfigurable Logic
+  Architectures <https://github.com/hansiglaser/chll>`_ use `Tcl scripts
+  <https://github.com/hansiglaser/pas-tcl>`_ and also provide an interactive
+  command line.
+
   .. _k7103usbtest.pas: http://k7103.svn.sourceforge.net/viewvc/k7103/branch/usb/host-test/k7103usbtest.pas?view=markup
